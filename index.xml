@@ -24,10 +24,10 @@ Test post, please ignore.</description>
     <item>
       <title>About</title>
       <link>/about/</link>
-      <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>This is a &amp;ldquo;hello world&amp;rdquo; example website for the blogdown package. The theme was forked from @jrutheiser/hugo-lithium-theme and modified by Yihui Xie.</description>
+      <description>Hello, my name is Zach Silvey and I&amp;rsquo;m a market rearch analyst from Portland, OR. This site is an informal showcase of what I&amp;rsquo;m working on. Thoughts and opinions are my own and do not reflect those of my employer.</description>
     </item>
     
   </channel>
