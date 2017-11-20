@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.30.2" />
+
+
+<title>Text mining Kanye West (Part 1) - Zach Silvey | Data Dork</title>
+<meta property="og:title" content="Text mining Kanye West (Part 1) - Zach Silvey | Data Dork">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/zachsilvey">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/zachsilvey">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">7 min read</span>
+    
+
+    <h1 class="article-title">Text mining Kanye West (Part 1)</h1>
+
+    
+    <span class="article-date">2017/11/19</span>
+    
+
+    <div class="article-content">
+      <div id="motivation" class="section level2">
+<h2>Motivation</h2>
+<p>I became interested in text mining after attending a talk by <a href="https://twitter.com/juliasilge">Julia Silge</a> at the Portland R User meetup group. She showed off some of the concepts from her new book Text Mining With R: A Tidy Approach, coauthored by <a href="https://twitter.com/drob">David Robinson</a>. The book, which I highly reccomend, covers some of the fundamental techniques of text mining using <a href="https://cran.r-project.org/web/packages/tidytext/index.html"><code>tidytext</code></a>, an R package created by David and Julia.</p>
+<p>Text mining is of personal interest to me because I am often working open-ended survey data in my day job as a market research analyst. The goal of this post was to practice some of those text mining techniques using a unique dataset.</p>
+<p>All code and data for this project are available on <a href="https://github.com/zachsilvey/Text-Mining-Kanye-Lyrics">GitHub</a>.</p>
+</div>
+<div id="the-data" class="section level2">
+<h2>The data</h2>
+<p>Survey data is my bread and butter but even I can admit that it sometimes isn’t the most exciting to write about. For this analysis I wanted to look at lyrics and who is better to analyze than Kanye West. More specifically, I collected the lyrics from all of the songs on Kanye’s core discography. This includes his 7 studio releases, no deluxe editions or b-sides. Given the relatively small size of the data set I collected the lyrics manually. My source was <a href="http://genius.com">genius</a>, from there I pulled: album, song title, year released, length, featured artist(s), writer(s), labeled tracks as songs or skits. I organized the data in Excel and then exported it as a CSV for easy ingestion into R.</p>
+</div>
+<div id="packages" class="section level2">
+<h2>Packages</h2>
+<p>The required packages used in this analysis are</p>
+<pre class="r"><code>library(tidyverse)
+library(scales)
+library(tidytext)
+library(gridExtra)</code></pre>
+</div>
+<div id="importing-and-cleaning-the-data" class="section level2">
+<h2>Importing and cleaning the data</h2>
+<p>The dataset was assembled manually and therefore was kept fairly simple and relatively clean so necessary cleaning is minimal. The first thing I did was remove text between [ and ] in the <code>Lyrics</code> column. Genius uses text surrounded by square brakets to indicate parts of songs (e.g., verse, chorus, bridge, etc.), while these may be useful for more advanced analyses I chose to remove them for simplicity here. I also re-ordered the factor levels of the <code>Album</code> variable so that they are in order of album release.</p>
+<pre class="r"><code>lyrics &lt;- read_csv(&quot;Data/Kanye Lyrics (beta2).csv&quot;, 
+    col_types = cols(Album = readr::col_factor(levels = c(&quot;The College Dropout&quot;, 
+        &quot;Late Registration&quot;, &quot;Graduation&quot;, 
+        &quot;808s &amp; Heartbreak&quot;, &quot;My Beautiful Dark Twisted Fantasy&quot;, 
+        &quot;Watch the Throne&quot;, &quot;Yeezus&quot;, &quot;The Life of Pablo&quot;)))) %&gt;%
+  mutate(Lyrics = str_replace_all(Lyrics, &quot;\\[[^]]*]&quot;, &quot;&quot;))
+
+glimpse(lyrics)</code></pre>
+<pre><code>## Observations: 121
+## Variables: 8
+## $ Album                &lt;fctr&gt; The College Dropout, The College Dropout...
+## $ Song                 &lt;chr&gt; &quot;Intro (Skit)&quot;, &quot;We Don&#39;t Care&quot;, &quot;Graduat...
+## $ Year                 &lt;int&gt; 2004, 2004, 2004, 2004, 2004, 2004, 2004,...
+## $ `Run-time`           &lt;time&gt; 00:19:00, 03:59:00, 01:22:00, 03:43:00, ...
+## $ `Featured artist(s)` &lt;chr&gt; NA, NA, NA, &quot;Syleena Johnson&quot;, NA, &quot;GLC, ...
+## $ `Writer(s)`          &lt;chr&gt; &quot;Kanye West&quot;, &quot;Kanye West, Miri Ben-Ari, ...
+## $ Skit                 &lt;chr&gt; &quot;Y&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, &quot;N&quot;, &quot;...
+## $ Lyrics               &lt;chr&gt; &quot;Kanye, can I talk to you for a minute? M...</code></pre>
+</div>
+<div id="term-frequencies" class="section level2">
+<h2>Term frequencies</h2>
+<p>A common place to start a text mining analysis is to look at term frequencies. This gives us an idea of words commonly used in our documents of interest. We can examine term frequencies with a few simple commands. The first step is to tokenize the text, in this case into single words (unigrams). To tokenize we use the <code>unnest_tokens()</code> function. <code>unnest_tokens()</code> also does some basic cleaning like converting text to lowercase and removing symbols.</p>
+<pre class="r"><code>lyrics %&gt;%
+  unnest_tokens(word, Lyrics) %&gt;%
+  count(word, sort = TRUE) %&gt;%
+  top_n(20) %&gt;%
+  ggplot(aes(reorder(word, -n), n)) +
+  geom_col(show.legend = FALSE) +
+  theme(axis.text.x = element_text(angle = -60, hjust = 0, size = 12)) +
+  labs(x = &quot;Word&quot;, y = &quot;Occurances&quot;, title = &quot;Most common words in Kanye&#39;s lyrics&quot;)</code></pre>
+<p><img src="/post/2017-11-19-text-mining-kanye-west-part-1_files/figure-html/term_freqs-1.png" width="672" /></p>
+<p>Upon examination we see that the most common words found across Kanye West lyrics are not that interesting. This is true in almost any corpora of natural language. These words fall into a category of text called stop words, and <code>tidytext</code> provides a quick way to remove them. But before we remove the stop words we should take note that four of the top 20 most common words in Kanye’s lyrics are direct references to himself (e.g., I, my, me, I’m). To those familiar with Kanye’s antics this will come as no surprise.</p>
+<pre class="r"><code>lyrics %&gt;%
+  unnest_tokens(word, Lyrics) %&gt;%
+  anti_join(stop_words) %&gt;%
+  count(word, sort = TRUE) %&gt;%
+  top_n(20) %&gt;%
+  ggplot(aes(reorder(word, -n), n)) +
+  geom_col(show.legend = FALSE) +
+  theme(axis.text.x = element_text(angle = -60, hjust = 0, size = 12)) +
+  labs(x = &quot;Word&quot;, y = &quot;Occurances&quot;, title = &quot;Most common words in Kanye&#39;s lyrics&quot;)</code></pre>
+<p><img src="/post/2017-11-19-text-mining-kanye-west-part-1_files/figure-html/stop_words-1.png" width="672" /></p>
+<p>With the addition of a single <code>anti_join</code> we removed the stop words and are left with words containing more information. Somewhat interestingly, love comes to the top, a topic that isn’t intuitively top-of-mind when thinking about Kanye’s work. Let look at the ocurrance of “love” across his albums.</p>
+<pre class="r"><code>album_words &lt;- lyrics %&gt;%
+  unnest_tokens(word, Lyrics) %&gt;%
+  count(Album, word, sort = TRUE) %&gt;%
+  ungroup()
+  
+album_totals &lt;- album_words %&gt;%
+  group_by(Album) %&gt;%
+  summarize(total = sum(n))
+
+album_words &lt;- album_words %&gt;%
+  inner_join(album_totals) %&gt;%
+  mutate(freq = n / total)
+
+album_words %&gt;%
+  anti_join(stop_words) %&gt;%
+  filter(word == &quot;love&quot;) %&gt;%
+  ggplot(aes(factor(Album, levels = rev(levels(Album))), freq, fill = Album)) +
+  geom_col(show.legend = FALSE) +
+  scale_y_continuous(label = percent) +
+  coord_flip() +
+  labs(x = &quot;Album&quot;, y = &quot;Frequency of love&quot;, title = &quot;Frequency of usage of the word love across Kanye&#39;s albums&quot;)</code></pre>
+<p><img src="/post/2017-11-19-text-mining-kanye-west-part-1_files/figure-html/love-1.png" width="672" /></p>
+<p>When we rank Kanye’s albums by frequency of occurance of the word love, “808s &amp; Heartbreak” rises to the top. If you’ve read Kanye’s <a href="https://en.wikipedia.org/wiki/Kanye_West">Wikipedia</a> page you’ll know that he made 808s soon after his mother passed away and his then fiance ended their engament. We also see that 808s marks a key point in his career, up until then he rarely mentioned love but afterwards there is a roughly four-fold increase in frequency of use. 808s is a somewhat controversial album in Kanye’s discography, many fans label this as his worst album and for some it marks a critical transition point in his career. In this plot that transition is pretty apparent. There also appears to be a relationship between the frequency of his use “love” and career tenure. We can explore this relationship by plotting frequency of “love” as a function of year of album release.</p>
+<pre class="r"><code>year_totals &lt;- lyrics %&gt;%
+  unnest_tokens(word, Lyrics) %&gt;%
+  anti_join(stop_words) %&gt;%
+  group_by(Year) %&gt;%
+  count(word) %&gt;%
+  summarise(total = sum(n))
+
+lyrics %&gt;%
+  unnest_tokens(word, Lyrics) %&gt;%
+  anti_join(stop_words) %&gt;%
+  filter(word == &quot;love&quot;) %&gt;%
+  count(word, Year) %&gt;%
+  inner_join(year_totals) %&gt;%
+  mutate(freq = n/total) %&gt;%
+  ggplot(aes(Year, freq)) +
+  geom_point(show.legend = FALSE) +
+  geom_smooth(method = &quot;lm&quot;, se = TRUE)</code></pre>
+<p><img src="/post/2017-11-19-text-mining-kanye-west-part-1_files/figure-html/love_plot-1.png" width="672" /></p>
+<p>A relationship made even more obvious when we remove the outlier of 808s &amp; Heartbreak.</p>
+<pre class="r"><code>lyrics %&gt;%
+  unnest_tokens(word, Lyrics) %&gt;%
+  anti_join(stop_words) %&gt;%
+  filter(word == &quot;love&quot; &amp; Year != 2008) %&gt;%
+  count(word, Year) %&gt;%
+  inner_join(year_totals) %&gt;%
+  mutate(freq = n/total) %&gt;%
+  ggplot(aes(Year, freq)) +
+  geom_point(show.legend = FALSE) +
+  geom_smooth(method = &quot;lm&quot;, se = TRUE)</code></pre>
+<p><img src="/post/2017-11-19-text-mining-kanye-west-part-1_files/figure-html/love_plot2-1.png" width="672" /></p>
+<p>Next lets look at frequent words for each album in Kanye’s discography.</p>
+<p><img src="/post/2017-11-19-text-mining-kanye-west-part-1_files/figure-html/album_freqs-1.png" width="672" /></p>
+<p>One thing that quickly becomes apprant when looking at frequent words per album is that many of the most frequent words appear to be hip-hop specific stop words. Words like “gonna” or “y’all” are slang terms that represent two words that would otherwise be considered stop words. In a similar vein we see many of Kanye’s signiture ad-libs show up as frequent terms (e.g., uh, la, ya). One way we could potentially tackle this problem would be to create a custom domain-specific list of stop words but that would be very labor intensive. Alternatively, if we make the assumption that many of these hip-hop stop words occur commonly across Kanye’s albums we can take a different approach where we examine words that appear frequently on a given album but not across multiple albums. Term frequency-inverse document frequency is a statistic that does just that and <code>tidytext</code> makes it easy to calculate using <code>bind_tf_idf()</code>. While using tf-idf in this way does not accomplish exactly the same thing it does give a picture of the uniquely frequent words on each album.</p>
+<pre class="r"><code>album_words %&gt;%
+  bind_tf_idf(word, Album, n) %&gt;%
+  group_by(Album) %&gt;%
+  top_n(5, tf_idf) %&gt;%
+  ggplot(aes(reorder(word, tf_idf), tf_idf, fill = Album)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  facet_wrap(~ Album, scales = &quot;free_y&quot;, ncol = 3) +
+  labs(x = &quot;Word&quot;, y = &quot;tf-idf&quot;, title = &quot;Uniquely frequent terms among Kanye&#39;s albums&quot;)</code></pre>
+<p><img src="/post/2017-11-19-text-mining-kanye-west-part-1_files/figure-html/tf_idf-1.png" width="672" /></p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

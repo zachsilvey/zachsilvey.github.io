@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.30.2" />
+
+
+<title>Create beautiful cartogram heatmaps with Statebins - Zach Silvey | Data Dork</title>
+<meta property="og:title" content="Create beautiful cartogram heatmaps with Statebins - Zach Silvey | Data Dork">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/zachsilvey">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/zachsilvey">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">2 min read</span>
+    
+
+    <h1 class="article-title">Create beautiful cartogram heatmaps with Statebins</h1>
+
+    
+    <span class="article-date">2017/11/19</span>
+    
+
+    <div class="article-content">
+      <div id="statebins" class="section level2">
+<h2>Statebins</h2>
+<p><a href="https://github.com/hrbrmstr/statebins"><code>Statebins</code></a> is a neat R package that allows for the easy creation of beautiful cartogram heatmaps in the style of <a href="http://bit.ly/statebins" class="uri">http://bit.ly/statebins</a>. The cartograms <code>statebins</code> generates offer a visually appealing and somewhat minimal alternative to a typical cartogram in that the states are uniform squares aligned in a grid. <code>Statebins</code> has been updated recently and currently depends on a development version of <code>ggplot2</code> so the following command is necessary to install it.</p>
+<pre class="r"><code>devtools::install_github(&quot;hrbrmstr/statebins&quot;)</code></pre>
+<p>Packages neccessary for this analysis are:</p>
+<pre class="r"><code>library(statebins)
+library(tidyverse)</code></pre>
+<p>In this analysis we will examine illiteracy rates as a percentage of total population. The data comes from the US State Facts and Figures dataset included in base R which was sourced from the U.S. Department of Commerce, Bureau of the Census (1977) Statistical Abstract of the United States. The first thing to do is load the data and prepare it for the <code>statebins</code> package.</p>
+<pre class="r"><code>data(state)
+
+state_facts &lt;- as.data.frame(state.x77) %&gt;%
+  mutate(state = rownames(.))</code></pre>
+<p>Finally, we can generate the cartogram heatmap by passing our data frame to the <code>statebins</code> function. I personally like the look of rounded corners so I’ll set <code>round = TRUE</code></p>
+<pre class="r"><code>state_facts %&gt;%
+  statebins(value_col = &quot;Illiteracy&quot;, round = TRUE, name = &quot;% of Pop.&quot;) +
+  labs(title = &quot;Illiteracy Rate (1970)&quot;,
+       caption = &quot;Source: U.S. Department of Commerce, Bureau of the Census (1977)&quot;) +
+  theme_statebins(legend_position = &quot;right&quot;)</code></pre>
+<p><img src="/post/2017-11-19-create-beautiful-cartogram-heatmaps-with-statebins_files/figure-html/plot-1.png" width="672" /></p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

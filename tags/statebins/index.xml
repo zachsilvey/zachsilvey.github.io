@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statebins on Zach Silvey | Data Dork</title>
+    <link>/tags/statebins/</link>
+    <description>Recent content in Statebins on Zach Silvey | Data Dork</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 19 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/statebins/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Create beautiful cartogram heatmaps with Statebins</title>
+      <link>/2017/11/19/create-beautiful-cartogram-heatmaps-with-statebins/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/11/19/create-beautiful-cartogram-heatmaps-with-statebins/</guid>
+      <description>StatebinsStatebins is a neat R package that allows for the easy creation of beautiful cartogram heatmaps in the style of http://bit.ly/statebins. The cartograms statebins generates offer a visually appealing and somewhat minimal alternative to a typical cartogram in that the states are uniform squares aligned in a grid. Statebins has been updated recently and currently depends on a development version of ggplot2 so the following command is necessary to install it.</description>
+    </item>
+    
+  </channel>
+</rss>

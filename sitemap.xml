@@ -3,23 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/2017/10/28/hello-world/</loc>
-    <lastmod>2017-10-28T00:00:00+00:00</lastmod>
+    <loc>/2017/11/19/create-beautiful-cartogram-heatmaps-with-statebins/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2017/10/28/test-post-2/</loc>
-    <lastmod>2017-10-28T00:00:00+00:00</lastmod>
+    <loc>/2017/11/19/text-mining-kanye-west-part-1/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2017/10/28/mtcars/</loc>
-    <lastmod>2017-10-28T00:00:00+00:00</lastmod>
+    <loc>/about/</loc>
+    <lastmod>2017-10-28T22:08:00-08:00</lastmod>
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2017-10-28T00:00:00+00:00</lastmod>
+    <loc>/tags/cartogram/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -29,26 +29,110 @@
   </url>
   
   <url>
+    <loc>/categories/data-visualization/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/datavis/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/dataviz/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/heatmap/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/kanye/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/kanye-west/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/post/</loc>
-    <lastmod>2017-10-28T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/r/</loc>
-    <lastmod>2017-10-28T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/r/</loc>
-    <lastmod>2017-10-28T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/statebins/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2017-10-28T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/text-mining/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/text-mining/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tidy-data/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/tidy-data/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tidytext/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/tidyverse/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kanye on Zach Silvey | Data Dork</title>
+    <link>/tags/kanye/</link>
+    <description>Recent content in Kanye on Zach Silvey | Data Dork</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 19 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/kanye/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Text mining Kanye West (Part 1)</title>
+      <link>/2017/11/19/text-mining-kanye-west-part-1/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/11/19/text-mining-kanye-west-part-1/</guid>
+      <description>MotivationI became interested in text mining after attending a talk by Julia Silge at the Portland R User meetup group. She showed off some of the concepts from her new book Text Mining With R: A Tidy Approach, coauthored by David Robinson. The book, which I highly reccomend, covers some of the fundamental techniques of text mining using tidytext, an R package created by David and Julia.
+Text mining is of personal interest to me because I am often working open-ended survey data in my day job as a market research analyst.</description>
+    </item>
+    
+  </channel>
+</rss>

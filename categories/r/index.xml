@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R on A Hugo website</title>
+    <title>R on Zach Silvey | Data Dork</title>
     <link>/categories/r/</link>
-    <description>Recent content in R on A Hugo website</description>
+    <description>Recent content in R on Zach Silvey | Data Dork</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>mtcars</title>
-      <link>/2017/10/28/mtcars/</link>
-      <pubDate>Sat, 28 Oct 2017 00:00:00 +0000</pubDate>
+      <title>Create beautiful cartogram heatmaps with Statebins</title>
+      <link>/2017/11/19/create-beautiful-cartogram-heatmaps-with-statebins/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/10/28/mtcars/</guid>
-      <description>This should display the output of summary(mtcars)
-summary(mtcars)## mpg cyl disp hp ## Min. :10.40 Min. :4.000 Min. : 71.1 Min. : 52.0 ## 1st Qu.:15.43 1st Qu.:4.000 1st Qu.:120.8 1st Qu.: 96.5 ## Median :19.20 Median :6.000 Median :196.3 Median :123.0 ## Mean :20.09 Mean :6.188 Mean :230.7 Mean :146.7 ## 3rd Qu.:22.80 3rd Qu.:8.000 3rd Qu.:326.0 3rd Qu.:180.0 ## Max. :33.90 Max. :8.000 Max. :472.0 Max. :335.0 ## drat wt qsec vs ## Min.</description>
+      <guid>/2017/11/19/create-beautiful-cartogram-heatmaps-with-statebins/</guid>
+      <description>StatebinsStatebins is a neat R package that allows for the easy creation of beautiful cartogram heatmaps in the style of http://bit.ly/statebins. The cartograms statebins generates offer a visually appealing and somewhat minimal alternative to a typical cartogram in that the states are uniform squares aligned in a grid. Statebins has been updated recently and currently depends on a development version of ggplot2 so the following command is necessary to install it.</description>
+    </item>
+    
+    <item>
+      <title>Text mining Kanye West (Part 1)</title>
+      <link>/2017/11/19/text-mining-kanye-west-part-1/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/11/19/text-mining-kanye-west-part-1/</guid>
+      <description>MotivationI became interested in text mining after attending a talk by Julia Silge at the Portland R User meetup group. She showed off some of the concepts from her new book Text Mining With R: A Tidy Approach, coauthored by David Robinson. The book, which I highly reccomend, covers some of the fundamental techniques of text mining using tidytext, an R package created by David and Julia.
+Text mining is of personal interest to me because I am often working open-ended survey data in my day job as a market research analyst.</description>
     </item>
     
   </channel>

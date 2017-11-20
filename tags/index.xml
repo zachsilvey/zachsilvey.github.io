@@ -1,22 +1,121 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on A Hugo website</title>
+    <title>Tags on Zach Silvey | Data Dork</title>
     <link>/tags/</link>
-    <description>Recent content in Tags on A Hugo website</description>
+    <description>Recent content in Tags on Zach Silvey | Data Dork</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Cartogram</title>
+      <link>/tags/cartogram/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/cartogram/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Datavis</title>
+      <link>/tags/datavis/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/datavis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dataviz</title>
+      <link>/tags/dataviz/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/dataviz/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Heatmap</title>
+      <link>/tags/heatmap/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/heatmap/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kanye</title>
+      <link>/tags/kanye/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/kanye/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kanye West</title>
+      <link>/tags/kanye-west/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/kanye-west/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>R</title>
       <link>/tags/r/</link>
-      <pubDate>Sat, 28 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Statebins</title>
+      <link>/tags/statebins/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/statebins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Text Mining</title>
+      <link>/tags/text-mining/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/text-mining/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tidy Data</title>
+      <link>/tags/tidy-data/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidy-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tidytext</title>
+      <link>/tags/tidytext/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidytext/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tidyverse</title>
+      <link>/tags/tidyverse/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tidyverse/</guid>
       <description></description>
     </item>
     
